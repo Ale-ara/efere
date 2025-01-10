@@ -1753,24 +1753,39 @@ function fill_min(e){
     return isValid;
 }
  
-function fill_attlist(e){
-  e.preventDefault();
-  var isValid = true;
-  $("#attlist_postagem").find("input").each(function(){
-      if($(this).val() == ""){isValid = false};
-  })
-  // SE VALIDAÇÃO É VERIFICADA:
-if(document.getElementById("confirmar_attlist").checked == false){isValid = false};
-  if(isValid == true){
-      $('#enviar_attlist').val('Enviando... Aguarde!').prop("disabled",true);
-      var texto =
-          '[table class="rank rond" style="border: none!important; margin: 0em; color: white; font-weight: 400; line-height: 1.5em;" bgcolor="#338da4"][tr style="border: none;"][td style="border: none!important;"][font=Poppins][size=18][b][ROND] ATUALIZAÇÃO REALIZADA! [' + $('#attlist_tag').val() + '][/b][/size][/font]\n\n' +
-'[b][size=14]Foi realizada uma atualização neste horário. Em caso de dúvidas ou erros, entre em contato com um membro do ministério da Ordem Militar.[/size][/b][/td][/tr][/table]'
-      $('#fa-generated-message').val(texto);}
-  else{
-      alert('Preencha todos os campos!');
-  }
+function fill_attlist(e) {
+    e.preventDefault();
+    var isValid = true;
+
+    // Verifica se os campos estão preenchidos
+    $("#attlist_postagem").find("input").each(function () {
+        if ($(this).val() == "") { 
+            isValid = false; 
+        }
+    });
+
+    // Verifica se o checkbox foi marcado
+    if (document.getElementById("confirmar_attlist").checked == false) { 
+        isValid = false; 
+    }
+
+    // Caso a validação seja verdadeira
+    if (isValid == true) {
+        $('#enviar_attlist').val('Enviando... Aguarde!').prop("disabled", true);
+
+        var texto =
+            '[table style="transition: none 0ms ease 0s; margin: 10px; border-collapse: collapse; text-align: center; width: -webkit-fill-available; border-radius: 10px; line-height: 9px; border-width: initial !important; border-style: none !important; border-color: initial !important;" bgcolor="#338da4"][tr style="transition: none; border: none; box-sizing: border-box; margin: 0px; padding: 0px;"][td style="transition: none 0ms ease 0s; box-sizing: border-box; margin: 0px; padding: 15px; border-width: initial !important; border-style: none !important; border-color: initial !important;"]' +
+            '[img]https://www.habbo.com/habbo-imaging/badge/b09164s43131s50134s17113s171152f871e57c21d5c38fdf1c29c23d7a3b8.png[/img]\n' +
+            '[font=poppins][color=white][b][size=18]LISTAGEM ATUALIZADA[/size][/b]\n\n' +
+            'Em caso de dúvidas ou erros, entre em contato com um estagiário+ da companhia.\n\n' +
+            '[url=https://www.policiarcc.com/t31424-efe-lista-de-membros][b][color=white]ACESSAR A LISTAGEM DE MEMBROS[/color][/b][/url][/color][/font][/td][/tr][/table]';
+        
+        $('#fa-generated-message').val(texto);
+    } else {
+        alert('Preencha todos os campos!');
+    }
 }
+
  
 function send_data(forms){
     var url_macro = 'https://api.apispreadsheets.com/data/cwMuE9sMjzg2i318/';
